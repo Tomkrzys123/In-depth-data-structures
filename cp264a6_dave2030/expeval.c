@@ -39,12 +39,12 @@ QUEUE infix_to_postfix(char *infixstr) {
 
 	while (infixstr && type(*infixstr) != 4) {
 
-		if (type(*infixstr) == 0) {
+		if (type(*infixstr) == 0) { //number
 		
 			enqueue(&queue, new_node(*infixstr-'0', 0));
 		}
 
-		else if (type(*infixstr) == 1) {
+		else if (type(*infixstr) == 1) { //number
 		
 			while (stack.top && type(stack.top->data) == 1 && get_priority(*infixstr) <= get_priority(stack.top->data)) {
 				np = pop(&stack);
@@ -57,13 +57,13 @@ QUEUE infix_to_postfix(char *infixstr) {
 		}
 
 
-		else if (type(*infixstr) == 2) {
+		else if (type(*infixstr) == 2) { //left
 			
 			push(&stack, new_node(*infixstr, 2));
 		}
 
 		
-		else if (type(*infixstr) == 3) {
+		else if (type(*infixstr) == 3) { //right
 			
 			np = pop(&stack);
 			c = np->data;
